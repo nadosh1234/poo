@@ -1,9 +1,9 @@
 services:
   - type: web
-    name: ocr-flask
+    name: ocr-app
     env: docker
     plan: free
     branch: main
     dockerfilePath: Dockerfile
-    healthCheckPath: /
     autoDeploy: true
+    healthCheckPath: /

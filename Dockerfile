@@ -1,23 +1,19 @@
-# استخدم Python رسمي من DockerHub
 FROM python:3.10-slim
 
-# تثبيت Tesseract و curl
+# تثبيت tesseract والاعتمادات اللي بيحتاجها OpenCV
 RUN apt-get update && apt-get install -y \
     tesseract-ocr \
-    libglib2.0-0 \
-    libsm6 \
-    libxext6 \
-    libxrender-dev \
+    libglib2.0-0 libsm6 libxext6 libxrender-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# ضبط مجلد العمل
+# إعداد مكان المشروع
 WORKDIR /app
 
-# نسخ الملفات
+# نسخ كل الملفات للمسار /app
 COPY . .
 
-# تثبيت مكتبات بايثون
+# تثبيت الباكدجات
 RUN pip install --no-cache-dir -r requirements.txt
 
-# تشغيل التطبيق باستخدام gunicorn
+# فتح البورت وتشغيل التطبيق بـ gunicorn
 CMD ["gunicorn", "app:app", "--bind", "0.0.0.0:10000"]
