@@ -7,7 +7,6 @@ import cv2
 import os
 from analysis import analyze_custom_data
 
-pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 
 app = Flask(__name__)
 UPLOAD_FOLDER = 'static/uploads'
